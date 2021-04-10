@@ -1,5 +1,10 @@
+import { ElementRender } from '@nx-web/core';
 import './icon.element.scss';
 
+@ElementRender({
+  useShadow: false,
+  selector: 'el-icon',
+})
 export class IconElement extends HTMLElement {
   public static get observedAttributes() {
     return ['href', 'use'];
@@ -9,12 +14,9 @@ export class IconElement extends HTMLElement {
 
   private use: string;
 
-
   observer: MutationObserver;
 
   connectedCallback() {
-    this.innerHTML = `<svg> <use xlink:href=""></use> </svg>`;
-
     const svgUse = this.querySelector('use');
 
     const attrSwapped = () => {
@@ -34,8 +36,12 @@ export class IconElement extends HTMLElement {
     }
   }
 
+  render() {
+    return `<svg> <use xlink:href=""></use> </svg>`;
+  }
+
   disconnectCallback() {
     this.observer.disconnect();
   }
 }
-customElements.define('el-icon', IconElement);
+// customElements.define('el-icon', IconElement);

@@ -1,15 +1,22 @@
+import { Element, OnConnect } from '@nx-web/core';
 import './app.element.scss';
 
-export class AppElement extends HTMLElement {
+@Element({
+  selector: 'element-root',
+  template: `
+    <el-icon href="assets/icons.svg" use="add"></el-icon>
+    <br>
+    <button is="el-button" mode="primary">Botão</button>
+  `,
+})
+export class AppElement extends HTMLElement implements OnConnect {
   public static observedAttributes = [];
 
-  connectedCallback() {
-    const title = 'web';
-    this.innerHTML = `
-      <el-icon href="assets/icons.svg" use="add"></el-icon>
-      <br>
-      <button is="el-button" mode="primary">Botão</button>
-    `;
+  onConnect(): void {
+    console.log('connect');
+  }
+
+  onDisconnect() {
+    console.log('disconnect');
   }
 }
-customElements.define('element-root', AppElement);

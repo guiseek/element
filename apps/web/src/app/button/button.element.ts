@@ -1,16 +1,21 @@
+import { Attr, AttrChange, ElementExtend, OnChanges } from '@nx-web/core';
 import './button.element.scss';
 
-export class ButtonElement extends HTMLButtonElement {
+@ElementExtend({
+  selector: 'el-button',
+  extend: 'button',
+})
+export class ButtonElement
+  extends HTMLButtonElement
+  implements OnChanges<string> {
   public static get observedAttributes() {
     return ['mode'];
   }
 
-  private mode: 'primary' | 'secondary';
+  @Attr<string>()
+  mode: 'primary' | 'secondary';
 
-  attributeChangedCallback(name: string, prev: string, next: string) {
-    if (prev !== next) {
-      this.setAttribute('class', `el-button-${next}`)
-    }
+  onChanges({ next }: AttrChange<string>): void {
+    this.setAttribute('class', `el-button-${next}`);
   }
 }
-customElements.define('el-button', ButtonElement, { extends: 'button' });

@@ -1,8 +1,6 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/web"
-  },
+  "cli": { "defaultCollection": "@nrwl/web" },
   "defaultProject": "web",
   "generators": {
     "@nrwl/web:application": {
@@ -63,20 +61,14 @@
         },
         "serve": {
           "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "web:build"
-          },
+          "options": { "buildTarget": "web:build" },
           "configurations": {
-            "production": {
-              "buildTarget": "web:build:production"
-            }
+            "production": { "buildTarget": "web:build:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/web/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["apps/web/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -101,15 +93,30 @@
             "devServerTarget": "web:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "web:serve:production"
-            }
+            "production": { "devServerTarget": "web:serve:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["apps/web-e2e/**/*.{js,ts}"] }
+        }
+      }
+    },
+    "web-core": {
+      "root": "libs/web/core",
+      "sourceRoot": "libs/web/core/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/web/core/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/core"],
           "options": {
-            "lintFilePatterns": ["apps/web-e2e/**/*.{js,ts}"]
+            "jestConfig": "libs/web/core/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
