@@ -12,7 +12,7 @@ describe('AppElement', () => {
   });
 
   it('should have a greeting', () => {
-    app.connectedCallback();
+    app.onConnect();
 
     expect(app.querySelector('h1').innerHTML).toEqual('Welcome to web!');
   });

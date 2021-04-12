@@ -1,47 +1,32 @@
-import { ElementRender } from '@nx-web/core';
-import './icon.element.scss';
+import { RenderElement, OnConnect, OnChanges, Attr } from '@nx-web/element';
 
-@ElementRender({
-  useShadow: false,
+@RenderElement({
   selector: 'el-icon',
 })
-export class IconElement extends HTMLElement {
-  public static get observedAttributes() {
-    return ['href', 'use'];
-  }
+export class IconElement extends HTMLElement implements OnConnect, OnChanges {
+  static observedAttributes = ['href', 'use'];
 
-  private href: string;
+  @Attr() public href: string;
 
-  private use: string;
+  @Attr() public use: string;
 
-  observer: MutationObserver;
-
-  connectedCallback() {
-    const svgUse = this.querySelector('use');
-
-    const attrSwapped = () => {
-      const href = `${this.href}#${this.use}`;
-      svgUse.setAttribute('xlink:href', href);
-    };
-
-    attrSwapped();
-
-    this.observer = new MutationObserver(attrSwapped);
-    this.observer.observe(this, { attributes: true });
-  }
-
-  attributeChangedCallback(name: string, prev: string, next: string) {
-    if (prev !== next) {
-      this[name] = next;
-    }
-  }
+  private useEl: SVGUseElement;
 
   render() {
     return `<svg> <use xlink:href=""></use> </svg>`;
   }
 
-  disconnectCallback() {
-    this.observer.disconnect();
+  onConnect(): void {
+    this.useEl = this.querySelector('use');
+    this.attrSwapped();
+  }
+
+  onChanges(): void {
+    if (this.useEl) this.attrSwapped();
+  }
+
+  attrSwapped() {
+    const href = `${this.href}#${this.use}`;
+    this.useEl.setAttribute('xlink:href', href);
   }
 }
-// customElements.define('el-icon', IconElement);

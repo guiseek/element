@@ -1,5 +1,6 @@
 export interface Config {
   selector: string;
+  providers?: any[];
 }
 
 export interface ElementConfig extends Config {
@@ -12,5 +13,5 @@ export interface ElementRenderConfig extends Config {
 }
 
 export interface ElementExtendConfig extends Config {
-  extend: keyof HTMLElementTagNameMap
+  extend: keyof HTMLElementTagNameMap;
 }

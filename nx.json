@@ -18,6 +18,7 @@
   "projects": {
     "web": { "tags": [] },
     "web-e2e": { "tags": [], "implicitDependencies": ["web"] },
-    "web-core": { "tags": [] }
+    "web-core": { "tags": [] },
+    "web-element": { "tags": [] }
   }
 }

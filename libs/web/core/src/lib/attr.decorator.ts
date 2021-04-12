@@ -1,20 +1,15 @@
 import { AttrChange } from './life-cycle';
 import 'reflect-metadata';
 
-export function Attr<T>(entity?: new () => T): any {
-  return (target: any, property: keyof T) => {
-    if (entity !== undefined) {
-      target[property] = new entity();
-    }
 
+export function Attr<T>(): any {
+  return (target: any, property: string) => {
     target.attributeChangedCallback = function (
-      name: string,
+      name: keyof T,
       prev: string,
       next: string
     ) {
-      if (prev !== next) {
-        this[name] = next;
-      }
+      this[name] = next;
 
       if (target.onChanges) {
         this.onChanges({ name, prev, next } as AttrChange);

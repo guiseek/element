@@ -1,21 +1,18 @@
-import { Attr, AttrChange, ElementExtend, OnChanges } from '@nx-web/core';
+import { Attr, AttrChange, ExtendElement, OnChanges } from '@nx-web/element';
 import './button.element.scss';
 
-@ElementExtend({
+type InputType = 'primary' | 'secondary';
+
+@ExtendElement({
   selector: 'el-button',
   extend: 'button',
 })
-export class ButtonElement
-  extends HTMLButtonElement
-  implements OnChanges<string> {
-  public static get observedAttributes() {
-    return ['mode'];
-  }
+export class ButtonElement extends HTMLButtonElement implements OnChanges {
+  static observedAttributes = ['mode'];
 
-  @Attr<string>()
-  mode: 'primary' | 'secondary';
+  @Attr() public mode: InputType = 'primary';
 
-  onChanges({ next }: AttrChange<string>): void {
+  onChanges({ next }: AttrChange<InputType>): void {
     this.setAttribute('class', `el-button-${next}`);
   }
 }
