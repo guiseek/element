@@ -1,6 +1,6 @@
 import { noop, validateSelector, validateTemplate } from '../utilities';
-import { applyInjectors } from '../injectors';
 import { ElementConfig } from '../interfaces';
+import { applyInjectors } from '../injectors';
 
 export const Element = (config: ElementConfig) => (
   target: CustomElementConstructor

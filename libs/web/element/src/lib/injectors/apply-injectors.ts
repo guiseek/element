@@ -2,10 +2,12 @@ import { Config } from '../interfaces';
 import { injector } from './injector';
 
 /**
- * Verifica se foram declaradas
- * dependências, coleta pelo injector
- * as instâncias pré criadas e então
- * envia como argumentos no `onInject`
+ * Verifica se foram declaradas dependências,
+ * coleta
+ *
+ * @export
+ * @param {Config} config
+ * @returns
  */
 export function applyInjectors(config: Config) {
   const providers = [];
@@ -22,6 +24,5 @@ export function applyInjectors(config: Config) {
 
     providers.push(dep);
   });
-
   return providers;
 }

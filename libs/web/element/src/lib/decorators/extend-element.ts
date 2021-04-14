@@ -13,6 +13,7 @@ export const ExtendElement = (config: ExtendElementConfig) => (
 
   // Intercepto atribuindo meu próprio hook
   target.prototype.connectedCallback = function (): void {
+
     /** Coleta dependências para injeção */
     if (config.providers && this.onInject) {
       this.onInject(applyInjectors(config));

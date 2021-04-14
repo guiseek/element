@@ -1,5 +1,5 @@
 import { RenderElement, OnConnect, OnChanges, Attr } from '@nx-web/element';
-
+import './icon.element.scss';
 @RenderElement({
   selector: 'el-icon',
 })

@@ -20,7 +20,7 @@ class Component extends HTMLElement implements OnInject<[Service]> {
   }
 }
 
-describe('webCore', () => {
+describe('web element injectors', () => {
   injector.set(Service);
   let component: Component;
 

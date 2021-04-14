@@ -102,25 +102,6 @@
         }
       }
     },
-    "web-core": {
-      "root": "libs/web/core",
-      "sourceRoot": "libs/web/core/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/web/core/**/*.ts"] }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/web/core"],
-          "options": {
-            "jestConfig": "libs/web/core/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "web-element": {
       "root": "libs/web/element",
       "sourceRoot": "libs/web/element/src",
@@ -140,9 +121,7 @@
         },
         "build": {
           "executor": "@nrwl/web:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "project": "libs/web/element/package.json",
             "entryFile": "libs/web/element/src/index.ts",

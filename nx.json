@@ -7,7 +7,7 @@
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": { "defaultBase": "master" },
+  "affected": { "defaultBase": "main" },
   "npmScope": "element",
   "tasksRunnerOptions": {
     "default": {
@@ -18,7 +18,6 @@
   "projects": {
     "web": { "tags": [] },
     "web-e2e": { "tags": [], "implicitDependencies": ["web"] },
-    "web-core": { "tags": [] },
     "web-element": { "tags": [] }
   }
 }
